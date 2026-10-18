@@ -1,0 +1,109 @@
+/* landing page: navbar + heading + paragraph, sab ek hi screen mein */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  /* upar ki jagah navbar ke liye chhodi hai */
+  padding: 120px 44px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* halka sa background: glow + grain. image jaisa dikhta hai par text ko disturb nahi karta */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 82% 28%, rgba(255, 255, 255, 0.09), transparent 70%),
+    radial-gradient(50% 45% at 8% 92%, rgba(130, 130, 255, 0.07), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.particle-wave {
+  position: absolute;
+  right: 0;
+  bottom: 12%;
+  width: 70%;
+  height: 55%;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 2;
+}
+
+.particle-heading {
+  display: block;
+  /* touch pe page scroll chalta rahe, sirf horizontal move pe dots hilein */
+  touch-action: pan-y;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* neeche ki row: line upar, paragraph thoda center mein */
+.hero-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #222;
+  padding-top: 32px;
+  margin-top: 44px;
+}
+
+.hero-info {
+  width: 100%;
+  max-width: 560px;
+}
+
+/* paragraph bhi Abril Fatface mein */
+.about-text {
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+/* tablet */
+@media (max-width: 1000px) {
+  .hero {
+    padding: 110px 32px 36px;
+  }
+}
+
+/* mobile */
+@media (max-width: 700px) {
+  .hero {
+    padding: 90px 20px 40px;
+  }
+  .particle-wave {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 45%;
+    opacity: 0.5;
+  }
+  .hero-bottom {
+    margin-top: 32px;
+    padding-top: 24px;
+  }
+  .about-text {
+    font-size: 1rem;
+  }
+}

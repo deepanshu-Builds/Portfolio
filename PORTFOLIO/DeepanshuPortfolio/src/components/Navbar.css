@@ -1,0 +1,106 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 36px 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+}
+
+/* poore page mein ek hi font: Abril Fatface (isme sirf ek weight hota hai, isliye bold nahi lagaya) */
+.logo,
+.nav-links a,
+.menu-btn {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.logo {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-size: 1.05rem;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+  opacity: 0.6;
+}
+
+.talk-btn {
+  background: var(--text);
+  color: var(--bg);
+  padding: 12px 28px;
+  border-radius: 999px;
+}
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: 1px solid #333;
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* tablet */
+@media (max-width: 1000px) {
+  .navbar {
+    padding: 28px 32px;
+  }
+  .nav-links {
+    gap: 24px;
+  }
+}
+
+/* mobile: links full screen menu ban jaate hain */
+@media (max-width: 700px) {
+  .navbar {
+    padding: 20px;
+  }
+  .logo {
+    font-size: 1rem;
+  }
+  .menu-btn {
+    display: block;
+    position: relative;
+    z-index: 30;
+  }
+  .nav-links {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s, visibility 0.25s;
+  }
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav-links a {
+    font-size: 1.6rem;
+  }
+  .talk-btn {
+    padding: 14px 36px;
+    font-size: 1.1rem !important;
+  }
+}

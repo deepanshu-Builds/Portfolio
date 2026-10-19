@@ -7,6 +7,7 @@ const projects = [
     tags: ['React', 'Node.js', 'Express', 'MongoDB'],
     image: './public/students-management.png',
     gradient: 'linear-gradient(145deg, #1f2a44, #0b0f1a)',
+    github:"https://github.com/deepanshu-Builds/Student-Management"
     
   },
   {
@@ -26,7 +27,7 @@ const projects = [
     tags: ['React', 'Node.js', 'Express', 'Socket.io'],
     image: '/public/real-time-chat.png',
     gradient: 'linear-gradient(145deg, #2a1f33, #100b16)',
-   
+   github:"https://github.com/deepanshu-Builds/realtime-chat-app"
   },
 ]
 

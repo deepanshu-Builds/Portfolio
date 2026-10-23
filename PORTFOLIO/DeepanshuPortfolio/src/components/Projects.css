@@ -1,83 +1,97 @@
+/* Projects ek hi screen mein: heading + carousel + arrows, scroll karke dekhne ki zarurat nahi */
 .projects {
   position: relative;
-  padding: 110px 44px 130px;
-}
-
-.projects-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-  border-top: 1px solid #222;
-  padding-top: 28px;
-  margin-bottom: 48px;
-}
-
-.projects-label,
-.projects-count {
-  font-family: var(--display);
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.02em;
-}
-
-.projects-title {
-  font-family: var(--display);
-  font-weight: 400;
-  text-transform: uppercase;
-  font-size: clamp(2.6rem, 8vw, 7.5rem);
-  line-height: 0.95;
-  margin-top: 14px;
-}
-
-/* flex carousel: sab card ek line mein, jo active hai woh zyada jagah leta hai */
-.flex-gallery {
-  display: flex;
-  gap: 14px;
-  height: clamp(440px, 68vh, 620px);
-}
-
-.proj-card {
-  position: relative;
-  flex: 1;
-  min-width: 0;
-  border-radius: 22px;
   overflow: hidden;
-  cursor: pointer;
-  background: #111;
-  transition: flex 0.65s cubic-bezier(0.22, 0.8, 0.24, 1);
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 70px 0 36px;
 }
 
-.proj-card:focus-visible {
+/* heading ka style index.css ke .section-head se aata hai, yahan sirf side ka gap */
+.projects-head {
+  margin-inline: 44px;
+}
+
+/* ---------- carousel ----------
+   Concept: saare cards ek lambi line (track) mein hain. Track ko --index ke hisaab se
+   khiska dete hain, taaki active card hamesha beech mein aaye aur aas-paas ke aadhe dikhein. */
+.carousel {
+  position: relative;
+  z-index: 2;
+  --card-w: min(900px, 76vw);
+  --gap: 22px;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  /* touch pe upar-neeche scroll chalta rahe, sirf side swipe carousel ko hilaye */
+  touch-action: pan-y;
+  padding: 6px 0;
+}
+
+.carousel-viewport:focus-visible {
   outline: 2px solid #fff;
-  outline-offset: 3px;
+  outline-offset: -2px;
 }
 
-.proj-card.active {
-  flex: 5;
+.carousel-track {
+  --index: 0;
+  display: flex;
+  gap: var(--gap);
+  user-select: none;
+  /* pehla card bhi beech mein aaye, isliye dono side barabar jagah */
+  padding-inline: calc(50% - var(--card-w) / 2);
+  transform: translateX(calc(var(--index) * (var(--card-w) + var(--gap)) * -1));
+  transition: transform 0.75s cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+
+/* card: left mein screenshot, right mein info */
+.slide {
+  position: relative;
+  flex: 0 0 var(--card-w);
+  height: clamp(320px, 48vh, 460px);
+  display: flex;
+  flex-direction: row;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(12, 12, 12, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  /* side wale cards chhote aur dhundhle */
+  transform: scale(0.9);
+  opacity: 0.4;
+  filter: grayscale(0.5);
+  transition: transform 0.75s cubic-bezier(0.22, 0.8, 0.24, 1), opacity 0.6s, filter 0.6s;
+}
+
+.slide.active {
+  transform: none;
+  opacity: 1;
+  filter: none;
   cursor: default;
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
-.proj-media {
-  position: absolute;
-  inset: 0;
-  transition: opacity 0.5s, filter 0.5s;
+.slide-media {
+  position: relative;
+  flex: 1.35 1 0;
+  min-width: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.proj-card:not(.active) .proj-media {
-  opacity: 0.55;
-  filter: grayscale(0.6);
-}
-
-.proj-media img {
+.slide-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: left top;
   display: block;
+  pointer-events: none;
 }
 
-.proj-ph {
-  position: relative;
+.slide-ph {
   width: 100%;
   height: 100%;
   display: flex;
@@ -88,204 +102,224 @@
   color: rgba(255, 255, 255, 0.07);
 }
 
-.proj-ph small {
+.slide-num {
   position: absolute;
-  top: 22px;
-  right: 22px;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.proj-card:not(.active) .proj-ph small {
-  display: none;
-}
-
-/* neeche andhera, taaki text screenshot ke upar bhi padhne mein aaye */
-.proj-shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.25) 55%, rgba(0, 0, 0, 0.4) 100%);
-}
-
-.proj-num {
-  position: absolute;
-  top: 22px;
-  left: 24px;
+  top: 14px;
+  left: 16px;
   z-index: 2;
   font-family: var(--display);
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 14px;
+  border-radius: 999px;
 }
 
-/* band card ka side mein likha naam */
-.proj-rail {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 26px;
-  z-index: 2;
+/* info: sirf active card mein dikhti hai, baaki mein hidden (tab se bhi nahi pakdi jaati) */
+.slide-body {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
-  justify-content: center;
-  transition: opacity 0.3s;
-}
-
-.proj-rail span {
-  font-family: var(--display);
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  white-space: nowrap;
-}
-
-.proj-card.active .proj-rail {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* khule card ki detail: band card pe hidden, taaki tab se bhi na pakde */
-.proj-body {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 32px;
-  z-index: 2;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px 28px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(16px);
+  transform: translateX(14px);
   transition: opacity 0.3s, transform 0.4s, visibility 0s 0.3s;
 }
 
-.proj-card.active .proj-body {
+.slide.active .slide-body {
   opacity: 1;
   visibility: visible;
   transform: none;
-  transition: opacity 0.5s 0.25s, transform 0.6s 0.25s, visibility 0s 0s;
+  transition: opacity 0.5s 0.3s, transform 0.6s 0.3s, visibility 0s 0s;
 }
 
-.proj-name {
+.slide-name {
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  font-size: clamp(1.7rem, 2.8vw, 2.5rem);
   line-height: 1;
+  margin-bottom: 12px;
+}
+
+.slide-desc {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 14px;
 }
 
-.proj-desc {
-  max-width: 46ch;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
+.slide-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  list-style: none;
   margin-bottom: 18px;
 }
 
-.proj-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  list-style: none;
-  margin-bottom: 22px;
-}
-
-.proj-tags li {
+.slide-tags li {
   font-family: var(--display);
-  font-size: 0.8rem;
-  padding: 6px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
 }
 
-.proj-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.proj-links a {
+.slide-link {
+  align-self: flex-start;
   font-family: var(--display);
-  font-size: 0.95rem;
-  padding: 11px 24px;
+  font-size: 0.92rem;
+  padding: 10px 24px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: #fff;
+  color: #000;
   transition: opacity 0.2s;
 }
 
-.proj-links a:hover {
-  opacity: 0.75;
+.slide-link:hover {
+  opacity: 0.8;
 }
 
-.proj-links a.primary {
+/* arrows + dots */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.car-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.car-btn:hover {
   background: #fff;
   color: #000;
-  border-color: #fff;
+}
+
+.car-btn:focus-visible,
+.car-dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.car-btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+.car-dots {
+  display: flex;
+  gap: 10px;
+}
+
+.car-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: width 0.3s, background 0.3s;
+}
+
+.car-dot.active {
+  width: 34px;
+  background: #fff;
 }
 
 /* tablet */
 @media (max-width: 1000px) {
   .projects {
-    padding: 90px 32px 110px;
+    padding: 80px 0 40px;
   }
-  .proj-body {
-    padding: 26px;
+  .projects-head {
+    margin: 0 32px 22px;
+  }
+  .carousel {
+    --card-w: min(780px, 84vw);
+  }
+  .slide {
+    height: clamp(320px, 46vh, 420px);
+  }
+  .slide-body {
+    padding: 20px 22px;
+  }
+  .slide-desc {
+    font-size: 0.9rem;
   }
 }
 
-/* mobile: cards ek ke neeche ek, active wala khulta hai */
+/* mobile: screenshot upar, info neeche. Phone pe poori screen ki zarurat nahi */
 @media (max-width: 700px) {
   .projects {
-    padding: 70px 20px 90px;
+    min-height: auto;
+    justify-content: flex-start;
+    padding: 64px 0 60px;
   }
   .projects-head {
-    margin-bottom: 32px;
-    padding-top: 22px;
+    margin: 0 20px 22px;
   }
-  .flex-gallery {
+  .carousel {
+    --card-w: 84vw;
+    --gap: 14px;
+  }
+  .slide {
+    height: 470px;
     flex-direction: column;
-    height: 640px;
-    gap: 10px;
+    border-radius: 20px;
   }
-  .proj-card {
-    border-radius: 18px;
+  .slide-media {
+    flex: none;
+    height: 190px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  .proj-card.active {
-    flex: 7;
+  .slide-num {
+    top: 12px;
+    left: 12px;
   }
-  .proj-num {
-    top: 26px;
-    left: 20px;
-  }
-  .proj-rail {
-    top: 0;
-    bottom: auto;
-    height: 78px;
+  .slide-body {
+    flex: 1;
     justify-content: flex-start;
-    align-items: center;
-    padding-left: 62px;
+    padding: 18px 20px;
+    transform: translateY(12px);
   }
-  .proj-rail span {
-    writing-mode: horizontal-tb;
-    transform: none;
-    font-size: 1.2rem;
+  .slide-name {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
   }
-  .proj-body {
-    padding: 20px;
+  .slide-desc {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
   }
-  .proj-desc {
-    font-size: 0.98rem;
+  .slide-tags {
     margin-bottom: 14px;
   }
-  .proj-tags {
-    margin-bottom: 16px;
+  .carousel-controls {
+    margin-top: 22px;
+    gap: 16px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .proj-card,
-  .proj-body,
-  .proj-media {
+  .carousel-track,
+  .slide,
+  .slide-body {
     transition: none;
   }
 }

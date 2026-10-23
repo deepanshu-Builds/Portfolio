@@ -1,4 +1,3 @@
-import ParticleWave from './ParticleWave'
 import ParticleHeading from './ParticleHeading'
 import './Hero.css'
 
@@ -11,23 +10,16 @@ const headingLines = [
 function Hero() {
   return (
     <section className="hero">
-      <ParticleWave />
-
       <ParticleHeading lines={headingLines} />
 
       <div className="hero-bottom">
-        <div className="hero-left">
-          
-          
+        <div className="hero-info">
+          <p className="about-text">
+            Full-stack developer who loves building fast, clean web apps.
+            Comfortable with MongoDB, Express, React and Node, always
+            learning something new.
+          </p>
         </div>
-
-        
-
-        <p className="about-text">
-          Full-stack developer who loves building fast, clean web apps.
-          Comfortable with MongoDB, Express, React and Node, always
-          learning something new.
-        </p>
       </div>
     </section>
   )

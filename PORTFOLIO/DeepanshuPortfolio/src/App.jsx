@@ -5,7 +5,7 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 import About from './components/About'
 import Contact from './components/Contact'
-import SwarmCursor from './components/SwarmCursor'
+import SwarmCursor from './components/Swarmcursor'
 
 function App() {
   return (

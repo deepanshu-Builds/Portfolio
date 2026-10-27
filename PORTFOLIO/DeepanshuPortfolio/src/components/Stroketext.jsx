@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import './StrokeText.css'
+import './Stroketext.css'
 
 const FONT = '"Abril Fatface", Georgia, serif'
 

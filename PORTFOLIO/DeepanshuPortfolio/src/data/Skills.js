@@ -1,7 +1,7 @@
 // Order yahi rahega jo section mein dikhega. Naya skill jodna ho toh items mein naam badhao.
 const skills = [
-  { category: 'Tools', items: ['Git', 'GitHub', 'VS Code', 'Postman', 'Vite', 'Render'] },
-  { category: 'Programming Languages', items: ['JavaScript', 'C++', 'SQL', 'Python (learning)'] },
+  { category: 'Tools', items: ['Git', 'GitHub', 'VS Code', 'Postman', 'Vercel', 'Render'] },
+  { category: 'Programming Languages', items: ['JavaScript', 'C++', 'SQL', 'Python  (learning)'] },
   { category: 'Database', items: ['MongoDB', 'MySQL'] },
   {
     category: 'Backend',

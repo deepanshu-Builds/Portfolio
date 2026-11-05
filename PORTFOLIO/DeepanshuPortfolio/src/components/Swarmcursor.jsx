@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 
 // Cursor ke aas-paas chhote dots ka jhund ghoomta hai.
 // Yeh ek hi canvas hai jo poori screen pe fixed hai, isliye har section mein chalta hai.
-function SwarmCursor({ count = 44 }) {
+function SwarmCursor({ count = 100 }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {

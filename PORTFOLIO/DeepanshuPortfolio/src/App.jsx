@@ -6,10 +6,12 @@ import Skills from './components/Skills'
 import About from './components/About'
 import Contact from './components/Contact'
 import SwarmCursor from './components/Swarmcursor'
+import DitherVeil from './components/DitherVeil'
 
 function App() {
   return (
     <>
+    <DitherVeil/>
       {/* peeche ka background aur cursor effect: ek baar yahan, har section mein chalte hain */}
       <Background />
       <SwarmCursor />

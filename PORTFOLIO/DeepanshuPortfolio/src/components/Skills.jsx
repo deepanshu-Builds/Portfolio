@@ -9,7 +9,7 @@ function Skills() {
     <section className="section skills" id="skills">
       <div className="section-head">
         <div>
-          <p className="section-label">What I work with</p>
+          <p className="section-label">What i work with</p>
           <ScrollFloat text="Skills" className="section-title" />
         </div>
       </div>

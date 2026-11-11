@@ -6,9 +6,7 @@ function Navbar() {
 
   return (
     <header className="navbar">
-      <a href="#" className="logo">Deepanshu Saini</a>
-
-      {/* sirf mobile pe dikhta hai */}
+      <a href="#" className="logo">MERN DEVELOPER</a>
       <button
         className="menu-btn"
         onClick={() => setOpen(!open)}
@@ -18,10 +16,10 @@ function Navbar() {
       </button>
 
       <nav className={open ? 'nav-links open' : 'nav-links'}>
-        <a href="#projects" onClick={() => setOpen(false)}>Projects</a>
-        <a href="#skills" onClick={() => setOpen(false)}>Skills</a>
-        <a href="#about" onClick={() => setOpen(false)}>About</a>
-        <a href="#contact" className="talk-btn" onClick={() => setOpen(false)}>Let’s Talk</a>
+        <a href="#projects" onClick={() => setOpen(false)}>PROJECTS</a>
+        <a href="#skills" onClick={() => setOpen(false)}>SKILLS</a>
+        <a href="#about" onClick={() => setOpen(false)}>ABOUT</a>
+        <a href="#contact" className="talk-btn" onClick={() => setOpen(false)}>LET'S TALK</a>
       </nav>
     </header>
   )

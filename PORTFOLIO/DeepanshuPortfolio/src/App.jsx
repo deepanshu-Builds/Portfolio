@@ -11,7 +11,7 @@ import DitherVeil from './components/DitherVeil'
 function App() {
   return (
     <>
-    <DitherVeil/>
+    {/* <DitherVeil/> */}
       {/* peeche ka background aur cursor effect: ek baar yahan, har section mein chalte hain */}
       <Background />
       <SwarmCursor />

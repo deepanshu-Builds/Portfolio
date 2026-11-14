@@ -4,11 +4,16 @@
   min-height: 100vh;
   min-height: 100svh;
   /* upar ki jagah navbar ke liye chhodi hai */
-  padding: 120px 44px 40px;
+  /* height: 100vh;
+
+  width: 100%; */
+  /* padding: 120px 44px 40px; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
+  justify-content: space-around;
+  align-items: center;
+  /* overflow: hidden; */
+ 
 }
 
 .hero-title {
@@ -16,11 +21,11 @@
   z-index: 2;
 }
 
-.particle-heading {
+ .particle-heading {
   display: block;
   /* touch pe page scroll chalta rahe, sirf horizontal move pe dots hilein */
   touch-action: pan-y;
-}
+} 
 
 .sr-only {
   position: absolute;
